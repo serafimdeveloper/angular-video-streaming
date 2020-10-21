@@ -1,0 +1,16 @@
+<div class="container-video">
+    <video #myVideo></video>
+    <div *ngIf="controls && (statusInicial || statusFinalizado)" class="controls">
+        <h4 *ngIf="statusFinalizado">{{ configText.messageSuccess }}</h4>
+        <div class="container-controls">
+            <button (click)="clickPreview()" *ngIf="statusFinalizado" [innerHTML]="configText.preview"></button>
+            <button (click)="clickStart()" *ngIf="statusFinalizado" [innerHTML]="configText.rewrite"></button>
+            <button (click)="clickUpload()" *ngIf="blob && statusFinalizado" [innerHTML]="configText.upload"></button>
+        </div>
+    </div>
+    <div *ngIf="controls" class="controls-video">
+        <div *ngIf="countdown" class="time-record"><span *ngIf="statusAndamento" class="info-record"></span>{{ countdown }}</div>
+        <button (click)="clickStop()" *ngIf="statusAndamento" [innerHTML]="configText.stop"></button>
+        <button (click)="clickCapture()" *ngIf="statusInicial" [innerHTML]="configText.record"></button>
+    </div>
+</div>
